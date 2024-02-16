@@ -14,7 +14,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true })); // Parse form data
 // app.use(cors());
 // Allow requests from school-module.vercel.app
-app.use(cors({ origin: "https://school-module.vercel.app" }));
+app.use(cors({ origin: "https://school-module.vercel.app/" }));
 
 require("dotenv").config();
 
