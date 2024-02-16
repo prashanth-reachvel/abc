@@ -11,7 +11,7 @@ const Requests = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3000/api/requests?limit=5"
+          "https://module-api.vercel.app/api/requests?limit=5"
         );
         setRequests(response.data);
       } catch (error) {

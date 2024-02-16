@@ -12,7 +12,7 @@ const ActiveInventory = ({ schoolName }) => {
     const fetchInventoryData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/api/inventory/${encodeURIComponent(
+          `https://module-api.vercel.app/api/inventory/${encodeURIComponent(
             schoolName
           )}`
         );

@@ -41,7 +41,7 @@ const RequestInventory = ({ addRequest }) => {
       });
 
       const response = await axios.post(
-        "http://localhost:3000/api/request",
+        "https://module-api.vercel.app/api/request",
         formData,
         {
           headers: {

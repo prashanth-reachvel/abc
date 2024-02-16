@@ -14,7 +14,7 @@ const Signin = ({ onLogin }) => {
     e.preventDefault();
     try {
       axios
-        .post("http://localhost:3000/login", { username, password })
+        .post("https://module-api.vercel.app/login", { username, password })
         .then((result) => {
           if (result.data.message === "Success") {
             const schoolName = result.data.schoolName; // Extract schoolName from response
