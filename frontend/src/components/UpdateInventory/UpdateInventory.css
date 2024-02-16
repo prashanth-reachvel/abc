@@ -1,0 +1,149 @@
+.form-container {
+  width: 900px;
+  min-height: 261px;
+  border-radius: 30px;
+  box-shadow: 1px 1px 10px 5px #0000000d;
+  padding: 40px;
+}
+.update-inventory-heading {
+  font-weight: 600;
+  size: 16px;
+  color: #ff671f;
+  text-align: left;
+}
+.date-input {
+  width: 150px;
+  height: 40px;
+  border-radius: 30px;
+  justify-content: center;
+  background: #f1eeec;
+  border: none;
+  outline: none;
+  margin-left: 50px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.reason {
+  width: 400px;
+  height: 40px;
+  border-radius: 30px;
+  justify-content: center;
+  background: #f1eeec;
+  border: none;
+  outline: none;
+  margin-left: 30px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.quantity {
+  margin-top: 20px;
+  width: 150px;
+  height: 40px;
+  border-radius: 30px;
+  justify-content: center;
+  background: #f1eeec;
+  border: none;
+  outline: none;
+  margin-left: 30px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.updated-by {
+  margin-top: 20px;
+  width: 150px;
+  height: 40px;
+  border-radius: 30px;
+  justify-content: center;
+  background: #f1eeec;
+  border: none;
+  outline: none;
+  margin-left: 30px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.first-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.second-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.second-section {
+  width: 988px;
+  min-height: 261px;
+  border-radius: 30px;
+  box-shadow: 1px 1px 10px 5px #0000000d;
+  padding: 40px;
+  margin: 80px;
+}
+.inp {
+  width: 400px;
+  height: 40px;
+  margin-top: 20px;
+}
+.rec-updates {
+  color: #ff671f;
+  font-weight: 600;
+  size: 20px;
+  justify-content: space-between;
+  display: flex;
+}
+.fil-scr {
+  border: none;
+  outline: none;
+  background-color: #f1eeec;
+  border-radius: 20px;
+  padding: 10px 20px;
+  margin-right: 20px;
+}
+.dt-div {
+  background-color: #f1eeec;
+  border-radius: 20px;
+  padding: 10px 20px;
+  border: none;
+  outline: none;
+  margin-right: 20px;
+}
+.scr-inp {
+  background-color: #f1eeec;
+  border-radius: 20px;
+  outline: none;
+  border: none;
+  padding: 10px 20px;
+  margin-right: 20px;
+}
+.srch-btn {
+  background: #ff671f;
+  outline: none;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  color: white;
+}
+.right-div {
+  justify-content: center;
+  display: flex;
+}
+.common-part {
+  display: flex;
+  justify-content: space-between;
+}
+.submit-btn-container {
+  margin-top: 40px;
+  display: flex;
+  justify-content: flex-end;
+}
+.submit-btn {
+  width: 120px;
+  background: #ff671f;
+  color: #ffffff;
+  border-radius: 30px;
+}
+
+.error-message {
+  color: rgb(107, 7, 7);
+  font-size: 12px;
+}

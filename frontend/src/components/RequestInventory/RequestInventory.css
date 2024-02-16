@@ -1,0 +1,261 @@
+/* * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+} */
+.request-inventory-main-container {
+  width: 900px;
+  display: flex;
+}
+
+.inventory-box {
+  width: 900px;
+  border-radius: 30px;
+  background: #fff;
+  box-shadow: 1px 1px 10px 5px rgba(0, 0, 0, 0.05);
+}
+
+.request-inventory-main-container {
+  max-width: 900px;
+  /* margin: 0 auto; */
+  padding: 20px;
+}
+
+.request-inventory-heading {
+  color: #ff671f;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+/* .form-group-request {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 20px;
+  text-align: left;
+} */
+
+/* .col-form-label-request {
+  min-width: 131px;
+  color: #000;
+  font-size: 16px;
+  font-weight: 400;
+} */
+
+/* .form-control-request {
+  border-radius: 30px;
+  background: #f1eeec;
+  border: none;
+  outline: none;
+  height: 40px;
+  padding: 0 10px;
+  min-width: 150px;
+  margin-right: 20px;
+  min-width: 720px;
+} */
+
+.request-inventory-dis-side {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* .org-sub-btn-request {
+  border-radius: 30px;
+  background: #ff671f;
+  height: 35px;
+  color: #fff;
+  text-align: center;
+  font-family: Inter;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: 0 20px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.school-up-btn-request {
+  border-radius: 30px;
+  border: 1px solid #ff671f;
+  background: #fff;
+  color: #ff671f;
+  text-align: center;
+  font-family: Inter;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  height: 35px;
+  padding: 0 20px;
+  cursor: pointer;
+} */
+
+input[type="file"] {
+  width: 200px;
+  height: 30px;
+  padding: 10px;
+}
+
+/* .inventory-heading {
+  color: #ff671f;
+  font-family: Inter;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.inventory-top-row {
+  display: flex;
+  justify-content: space-between;
+} */
+
+.date-input-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 40px;
+}
+
+/* .request-inventory-date-label {
+  color: #000;
+} */
+
+.request-inventory-date-input {
+  width: 150px;
+  height: 40px;
+  border-radius: 30px;
+  justify-content: center;
+  background: #f1eeec;
+  border: none;
+  outline: none;
+  margin-left: 30px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+/* .school-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+} */
+
+/* .approved {
+  color: #046a38;
+}
+
+.on-hold {
+  color: #ff8a00;
+}
+
+.rejected {
+  color: #f00;
+} */
+
+/* .inventory-btn {
+  border-radius: 30px;
+  background: #046a38;
+  color: white;
+  padding: 10px 40px;
+  border: none;
+  cursor: pointer;
+  text-transform: uppercase;
+  height: 35px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */
+
+/* .date-filter {
+  border-radius: 20px;
+  background: #f1eeec;
+  min-width: 100px;
+  height: 35px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 0 10px;
+} */
+
+/* .search-input {
+  height: 35px;
+  background: #f1eeec;
+  min-width: 230px;
+  margin-right: 20px;
+  border-radius: 30px;
+  border: none;
+  outline: none;
+  padding: 0 10px;
+}
+
+.search-school-btn {
+  border-radius: 20px;
+  background: #ff671f;
+  height: 35px;
+  color: #fff;
+  text-align: center;
+  font-family: Inter;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 10px 30px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+} */
+
+.request-inventory-upload-docs {
+  margin-left: 0px;
+}
+
+.quantity-input-field {
+  width: 267px;
+  height: 40px;
+  border-radius: 30px;
+  background: #f1eeec;
+  border: none;
+  outline: none;
+  padding-left: 20px;
+}
+
+.request-inventory {
+  position: relative;
+  left: 350px;
+}
+
+.file-input {
+  border: none;
+  background: #fff;
+  color: #ff671f;
+  text-align: center;
+  font-family: Inter;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  height: 35px;
+  padding: 0 20px;
+  cursor: pointer;
+  border-radius: 30px;
+  border: 1px solid #ff671f;
+}
+
+.upload-button {
+  border-radius: 30px;
+  border: 1px solid #ff671f;
+  background: #fff;
+  color: #ff671f;
+  text-align: center;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  padding: 10px 20px;
+  cursor: pointer;
+  line-height: normal;
+}
+
+.cancel-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}

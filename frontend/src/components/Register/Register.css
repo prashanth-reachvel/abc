@@ -1,0 +1,60 @@
+.register-main-container {
+  width: 900px;
+  height: 500px;
+  box-shadow: 1px 1px 10px 5px #0000000d;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  text-align: left;
+}
+
+.register-inner-container {
+  width: 530px;
+  height: 500px;
+  background: #046a38;
+  border-radius: 30px 0px 0px 30px;
+}
+
+.register-bg-image {
+  width: 530px;
+  height: 500px;
+  border-radius: 30px 0px 0px 30px;
+  background-size: cover;
+  opacity: 20%;
+}
+
+.input-element {
+  font-size: 16px;
+  background: #f1eeec;
+  width: 300px;
+  height: 20px;
+  border-radius: 30px;
+  border: none;
+  outline: none;
+  margin-left: 20px;
+  padding: 10px;
+}
+
+.email-input {
+  margin-left: 50px;
+}
+
+.btn-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.register-button {
+  background: #046a38;
+  width: 150px;
+  height: 40px;
+  border-radius: 30px;
+  color: #fff;
+  border: none;
+  outline: none;
+  font-size: 20px;
+  font-weight: 600;
+  text-align: center;
+}
