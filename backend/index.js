@@ -14,17 +14,17 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true })); // Parse form data
 // app.use(cors());
 // Allow requests from school-module.vercel.app
-// app.use(cors({ origin: "https://school-module.vercel.app" }));
+app.use(cors({ origin: "https://school-module.vercel.app" }));
 // app.use(cors({ origin: "*" }));
-app.use((req, res, next) => {
-  res.setHeader(
-    "Access-Control-Allow-Origin",
-    "https://school-module.vercel.app"
-  );
-  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
-  next();
-});
+// app.use((req, res, next) => {
+//   res.setHeader(
+//     "Access-Control-Allow-Origin",
+//     "https://school-module.vercel.app"
+//   );
+//   res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+//   res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+//   next();
+// });
 
 require("dotenv").config();
 
