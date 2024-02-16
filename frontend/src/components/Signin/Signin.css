@@ -1,0 +1,70 @@
+.signin-main-container {
+  width: 904px;
+  height: 500px;
+  box-shadow: 1px 1px 10px 5px #0000000d;
+  border-radius: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: left;
+  margin: 0 auto;
+  margin-bottom: 50px;
+}
+
+.signin-inner-container {
+  width: 510px;
+  height: 500px;
+  background: #046a38;
+  border-radius: 30px 0px 0px 30px;
+}
+
+.signin-bg-image {
+  width: 420px;
+  height: 500px;
+  border-radius: 30px 0px 0px 30px;
+  background-size: cover;
+  opacity: 20%;
+}
+
+.signin-white-logo {
+  z-index: 1;
+  position: relative;
+  top: -60%;
+  left: 25%;
+  width: 206px;
+  height: 110px;
+}
+
+.input-element {
+  font-size: 16px;
+  background: #f1eeec;
+  width: 280px;
+  height: 20px;
+  border-radius: 30px;
+  border: none;
+  outline: none;
+  margin-left: 20px;
+  padding: 10px;
+}
+
+.btn-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.signin-button {
+  background: #046a38;
+  /* width: 150px;
+  height: 40px; */
+  border-radius: 30px;
+  color: #fff;
+  border: none;
+  outline: none;
+  font-size: 20px;
+  font-weight: 600;
+  padding: 10px 10px;
+  width: 150px;
+  text-align: center;
+}

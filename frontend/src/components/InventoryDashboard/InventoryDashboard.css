@@ -1,0 +1,77 @@
+.inventory-box {
+  border-radius: 30px;
+  background: #fff;
+  box-shadow: 1px 1px 10px 5px rgba(0, 0, 0, 0.05);
+  padding: 40px;
+}
+.inventory-top-row {
+  display: flex;
+  justify-content: space-between;
+}
+.inventory-heading {
+  color: #ff671f;
+  font-family: Inter;
+  font-size: 20px;
+  font-weight: 600;
+}
+.membership-cards {
+  display: flex;
+  justify-content: space-between;
+}
+.member-green-card {
+  border-radius: 30px;
+  background: #046a38;
+  box-shadow: 1px 1px 10px 5px rgba(0, 0, 0, 0.05);
+  padding: 30px 45px;
+  text-align: center;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.menber-plan-head {
+  color: #fff;
+  text-align: center;
+  font-family: Inter;
+  font-size: 20px;
+  font-weight: 600;
+  margin: 10px 0;
+}
+.white-inner-box {
+  border-radius: 19px;
+  background: #fff;
+  padding: 20px;
+  margin-bottom: 10px;
+  line-height: 1;
+}
+.school-green-text {
+  color: #046a38;
+  text-align: center;
+  font-family: Inter;
+  font-size: 16px;
+  font-weight: 700;
+  margin: 5px 0;
+}
+.add-menber-btn {
+  color: #046a38;
+  text-align: center;
+  font-family: Inter;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  border-radius: 30px;
+  background: #fff;
+  height: 35px;
+  padding: 10px 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+.add-menber-btn:hover {
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
