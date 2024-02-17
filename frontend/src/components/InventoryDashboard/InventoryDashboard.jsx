@@ -11,7 +11,7 @@ const InventoryDashboard = () => {
     const fetchInventoryData = async () => {
       try {
         const response = await axios.get(
-          `https://module-api.vercel.app/api/inventory/${encodeURIComponent(
+          `https://mernbackendapp-4hcd.onrender.com/api/inventory/${encodeURIComponent(
             schoolName
           )}`
         );
