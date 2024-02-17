@@ -231,6 +231,6 @@ app.post("/api/inventory/:school/:title", async (req, res) => {
   }
 });
 
-app.listen(3000, () => {
+app.listen(port, () => {
   console.log("Server is running");
 });
