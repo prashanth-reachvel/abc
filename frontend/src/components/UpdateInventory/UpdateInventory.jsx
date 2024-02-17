@@ -20,7 +20,7 @@ const UpdateInventory = () => {
       try {
         const encodedTitle = encodeURIComponent(title);
         const response = await axios.get(
-          `https://module-api.vercel.app/api/inventory/${school}/${encodedTitle}`
+          `https://mernbackendapp-4hcd.onrender.com/api/inventory/${school}/${encodedTitle}`
         );
         const { updatedDate, totalAddQuantity } = response.data;
         setUpdatedDate(updatedDate);
