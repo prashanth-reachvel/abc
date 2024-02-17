@@ -68,7 +68,7 @@ const UpdateInventory = () => {
       );
 
       await axios.post(
-        `https://module-api.vercel.app/api/inventory/${school}/${title}`,
+        `https://mernbackendapp-4hcd.onrender.com/api/inventory/${school}/${title}`,
         {
           totalAddQuantity: newTotal,
           available: newTotal,
