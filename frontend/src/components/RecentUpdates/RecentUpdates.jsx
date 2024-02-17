@@ -11,7 +11,7 @@ const RecentUpdates = () => {
     const fetchUpdates = async () => {
       try {
         const response = await axios.get(
-          "https://module-api.vercel.app/api/updates?limit=5"
+          "https://mernbackendapp-4hcd.onrender.com/api/updates?limit=5"
         );
         setUpdates(response.data);
       } catch (err) {
