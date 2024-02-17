@@ -41,7 +41,7 @@ const RequestInventory = ({ addRequest }) => {
       });
 
       const response = await axios.post(
-        "https://module-api.vercel.app/api/request",
+        "https://mernbackendapp-4hcd.onrender.com/api/request",
         formData,
         {
           headers: {
