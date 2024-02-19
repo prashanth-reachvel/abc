@@ -41,7 +41,7 @@ const RequestInventory = ({ addRequest }) => {
       });
 
       const response = await axios.post(
-        "https://mernbackendapp-4hcd.onrender.com/api/request",
+        "http://localhost:3000/api/request",
         formData,
         {
           headers: {
