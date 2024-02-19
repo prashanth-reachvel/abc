@@ -46,6 +46,10 @@ db.once("open", () => {
 //     .catch((err) => console.log(err));
 // });
 
+app.get('/', (req, res) => {
+  res.send('Hello World!');
+});
+
 app.post("/login", (req, res) => {
   const { username, password } = req.body;
   SchoolModel.findOne({ username: username }).then((user) => {
