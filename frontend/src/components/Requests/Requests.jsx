@@ -11,7 +11,7 @@ const Requests = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "https://mernbackendapp-4hcd.onrender.com/api/requests?limit=5"
+          "http://localhost:3000/api/requests?limit=5"
         );
         setRequests(response.data);
       } catch (error) {
