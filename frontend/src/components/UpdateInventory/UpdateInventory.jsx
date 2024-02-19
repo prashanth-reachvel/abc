@@ -20,7 +20,7 @@ const UpdateInventory = () => {
       try {
         const encodedTitle = encodeURIComponent(title);
         const response = await axios.get(
-          `https://mernbackendapp-4hcd.onrender.com/api/inventory/${school}/${encodedTitle}`
+          `http://localhost:3000/api/inventory/${school}/${encodedTitle}`
         );
         const { updatedDate, totalAddQuantity } = response.data;
         setUpdatedDate(updatedDate);
@@ -52,7 +52,7 @@ const UpdateInventory = () => {
     try {
       const newTotal = totalAddQuantity - parseInt(newTotalQuantity);
       await axios.post(
-        `https://module-api.vercel.app/api/updateinventory/${school}/${title}`,
+        `http://localhost:3000/api/updateinventory/${school}/${title}`,
         {
           school,
           title,
@@ -68,7 +68,7 @@ const UpdateInventory = () => {
       );
 
       await axios.post(
-        `https://mernbackendapp-4hcd.onrender.com/api/inventory/${school}/${title}`,
+        `http://localhost:3000/api/inventory/${school}/${title}`,
         {
           totalAddQuantity: newTotal,
           available: newTotal,
