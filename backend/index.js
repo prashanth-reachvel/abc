@@ -39,8 +39,8 @@ app.post("/login", (req, res) => {
   SchoolModel.findOne({ username: username }).then((user) => {
     if (user) {
       if (user.password === password) {
-        res.json({ message: "Success", schoolName: user.schoolName });
-        console.log(res.json());
+        const token = jwt.sign({ username: user.username }, process.env.JWT_SECRET, { expiresIn: '1h' });
+        res.json({ message: "Success", schoolName: user.schoolName, token: token });
       } else {
         res.json({ message: "The Password is incorrect" });
       }
