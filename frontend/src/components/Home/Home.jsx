@@ -3,8 +3,9 @@ import ActiveInventory from "../ActiveInventory/ActiveInventory";
 import Requests from "../Requests/Requests";
 import { useLocation } from "react-router-dom";
 
-const Home = () => {
-  const { schoolName } = useLocation().state;
+const Home = ({ schoolName }) => {
+  // const { state } = useLocation();
+  // const schoolName = state ? state.schoolName : null;
 
   console.log(schoolName);
 
