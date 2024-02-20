@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./Header.css";
 import { Link } from "react-router-dom";
 
-const Header = ({ isLoggedIn, onLogout, username }) => {
+const Header = ({ isLoggedIn, onLogout, schoolName }) => {
   // Receive username prop
   const [profile, setProfile] = useState(false);
 
@@ -10,7 +10,12 @@ const Header = ({ isLoggedIn, onLogout, username }) => {
     setProfile(!profile);
   };
 
-  console.log(username);
+  console.log(schoolName);
+
+  const handleLogout = () => {
+    setProfile(false);
+    onLogout();
+  };
 
   return (
     <div className="home-main-container">
@@ -61,10 +66,10 @@ const Header = ({ isLoggedIn, onLogout, username }) => {
             </div>
             {profile && (
               <div className="dropdown">
-                <div className="dropdown-item">{username}</div>
+                <div className="dropdown-item">{schoolName}</div>
                 <button
                   className="dropdown-item signout-btn"
-                  onClick={onLogout}
+                  onClick={handleLogout}
                 >
                   Signout
                 </button>
