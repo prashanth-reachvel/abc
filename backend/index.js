@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const multer = require("multer");
-const upload = multer({ dest: "/tmp" });
+const upload = multer({ dest: "uploads/" });
 const SchoolModel = require("./models/School");
 const Inventory = require("./models/AddInventory");
 const RequestModel = require("./models/Request");
@@ -13,18 +13,6 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true })); // Parse form data
 app.use(cors());
-// Allow requests from school-module.vercel.app
-// app.use(cors({ origin: "https://school-module.vercel.app" }));
-// app.use(cors({ origin: "*" }));
-// app.use((req, res, next) => {
-//   res.setHeader(
-//     "Access-Control-Allow-Origin",
-//     "https://school-module.vercel.app"
-//   );
-//   res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
-//   res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
-//   next();
-// });
 
 require("dotenv").config();
 
@@ -45,10 +33,6 @@ db.once("open", () => {
 //     .then((schools) => res.json(schools))
 //     .catch((err) => console.log(err));
 // });
-
-app.get('/', (req, res) => {
-  res.send('Hello World!');
-});
 
 app.post("/login", (req, res) => {
   const { username, password } = req.body;
@@ -104,7 +88,7 @@ app.post("/api/request", upload.single("fileInput"), async (req, res) => {
   }
 });
 
-app.post("/api/update", async (req, res) => {
+app.post("/api/update/", async (req, res) => {
   try {
     const updateData = req.body;
 
@@ -134,23 +118,16 @@ app.get("/api/requests", async (req, res) => {
   }
 });
 
-app.get("/api/updates", async (req, res) => {
+app.get("/api/updates/:school", async (req, res) => {
   try {
-    const updates = await UpdateModel.find(
-      {},
-      {
-        school: 1,
-        title: 1,
-        newTotalQuantity: 1,
-        updatedDate: 1,
-        reason: 1,
-        source: 1,
-      },
-      { limit: 5, sort: { updatedDate: -1 } }
-    );
+    const { school } = req.params;
+    const updates = await UpdateModel.find({ school: school })
+      .limit(5)
+      .sort({ updatedDate: -1 })
+      .select("school title newTotalQuantity updatedDate reason source");
     res.json(updates);
   } catch (error) {
-    console.error("Error Fetching Updates:", error);
+    console.error("Error fetching updates:", error);
     res.status(500).json({ error: "Internal server error" });
   }
 });
@@ -235,6 +212,6 @@ app.post("/api/inventory/:school/:title", async (req, res) => {
   }
 });
 
-app.listen(port, () => {
+app.listen(3000, () => {
   console.log("Server is running");
 });
