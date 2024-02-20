@@ -29,13 +29,7 @@ const Sidebar = ({ onLogout, schoolName, navigateTo }) => {
   return (
     <div className="sidebar-main-container">
       <div className="sidebar-inner-container">
-        <NavLink
-          to={{
-            pathname: "/home",
-            state: { schoolName },
-          }}
-          activeClassName="active-link"
-        >
+        <NavLink to="/home" activeClassName="active-link">
           <p
             className={`sidebar-items ${
               activeItem === "Home" && "active-item"
@@ -70,7 +64,7 @@ const Sidebar = ({ onLogout, schoolName, navigateTo }) => {
                 Active Inventory
               </p>
             </Link>
-            <Link to="/update-inventory">
+            <Link to="/active-inventory">
               <p
                 className={`inventory-item update-inventory-item ${
                   activeItem === "Update Inventory" && "active-item"
