@@ -16,12 +16,15 @@ import Sidebar from "./components/Sidebar/Sidebar"; // Import the Sidebar compon
 import UpdateInventory from "./components/UpdateInventory/UpdateInventory";
 import Register from "./components/Register/Register";
 import InventoryDashboard from "./components/InventoryDashboard/InventoryDashboard";
+import RecentUpdates from "./components/RecentUpdates/RecentUpdates";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(
     localStorage.getItem("isLoggedIn") === "true"
   );
   const [schoolName, setSchoolName] = useState("");
+
+  console.log(schoolName);
 
   // Update localStorage whenever login state changes
   useEffect(() => {
@@ -32,11 +35,13 @@ function App() {
   const handleLogin = (schoolName) => {
     setIsLoggedIn(true);
     setSchoolName(schoolName);
+    // navigate("/home", { state: { schoolName } });
   };
 
   // Function to handle logout
   const handleLogout = () => {
     setIsLoggedIn(false);
+    setSchoolName("");
   };
 
   const navigateTo = (path) => {
@@ -45,7 +50,11 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Header isLoggedIn={isLoggedIn} onLogout={handleLogout} />
+      <Header
+        isLoggedIn={isLoggedIn}
+        onLogout={handleLogout}
+        schoolName={schoolName}
+      />
       <div style={{ display: "flex" }}>
         {/* Render the Sidebar only if logged in and not on the sign-in page */}
         {isLoggedIn && (
@@ -59,12 +68,22 @@ function App() {
           <Route path="/" element={<Signin onLogin={handleLogin} />} />
           <Route
             path="/home"
-            element={isLoggedIn ? <Home /> : <Navigate to="/" />}
+            element={
+              isLoggedIn ? (
+                <Home schoolName={schoolName} />
+              ) : (
+                <Navigate to="/" />
+              )
+            }
           />
           <Route
             path="/active-inventory"
             element={
-              isLoggedIn ? <ActiveInventory /> : <Navigate to="/signin" />
+              isLoggedIn ? (
+                <ActiveInventory schoolName={schoolName} />
+              ) : (
+                <Navigate to="/signin" />
+              )
             }
           />
           <Route
@@ -86,6 +105,10 @@ function App() {
             element={<InventoryDashboard />}
           />
           <Route path="/register" element={<Register />} />
+          <Route
+            path="/recent-updates"
+            element={<RecentUpdates schoolName={schoolName} />}
+          />
         </Routes>
       </div>
     </BrowserRouter>
