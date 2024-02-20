@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const multer = require("multer");
+const jwt = require('jsonwebtoken');
 const upload = multer({ dest: "uploads/" });
 const SchoolModel = require("./models/School");
 const Inventory = require("./models/AddInventory");
