@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import "./Header.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Header = ({ isLoggedIn, onLogout, schoolName }) => {
+  const school = localStorage.getItem("schoolName");
   // Receive username prop
   const [profile, setProfile] = useState(false);
+  const navigate = useNavigate();
 
   const handleProfile = () => {
     setProfile(!profile);
@@ -15,6 +17,7 @@ const Header = ({ isLoggedIn, onLogout, schoolName }) => {
   const handleLogout = () => {
     setProfile(false);
     onLogout();
+    navigate("/");
   };
 
   return (
@@ -66,7 +69,7 @@ const Header = ({ isLoggedIn, onLogout, schoolName }) => {
             </div>
             {profile && (
               <div className="dropdown">
-                <div className="dropdown-item">{schoolName}</div>
+                <div className="dropdown-item">{school}</div>
                 <button
                   className="dropdown-item signout-btn"
                   onClick={handleLogout}
