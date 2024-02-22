@@ -2,22 +2,21 @@ import React, { useEffect, useState } from "react";
 import "./RecentUpdates.css";
 import axios from "axios";
 
-const RecentUpdates = ({ schoolName }) => {
+const RecentUpdates = ({ school, title }) => {
   const [updates, setUpdates] = useState([]);
   const [selectedDate, setSelectedDate] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
-  const school = schoolName;
 
-  console.log(schoolName);
   console.log(school);
+  console.log(title);
 
   useEffect(() => {
     const fetchUpdates = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/api/updates/?${encodeURIComponent(
+          `http://localhost:3000/api/updates/${encodeURIComponent(
             school
-          )}?limit=5`
+          )}/${encodeURIComponent(title)}?limit=5`
         );
         setUpdates(response.data);
       } catch (err) {
