@@ -5,6 +5,7 @@ const SchoolSchema = new mongoose.Schema({
   email: String,
   password: String,
   schoolName: String,
+  schoolId: Number,
 });
 
 const SchoolModel = mongoose.model("schools", SchoolSchema);
