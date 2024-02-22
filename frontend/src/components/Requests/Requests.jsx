@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./Requests.css";
 import axios from "axios";
 
-const Requests = () => {
+const Requests = ({ schoolName }) => {
   const [requests, setRequests] = useState([]);
   const [selectedDate, setSelectedDate] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
@@ -11,7 +11,9 @@ const Requests = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3000/api/requests?limit=5"
+          `http://localhost:3000/api/requests/${encodeURIComponent(
+            schoolName
+          )}?limit=5`
         );
         setRequests(response.data);
       } catch (error) {
