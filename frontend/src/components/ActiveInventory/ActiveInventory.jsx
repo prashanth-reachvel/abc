@@ -5,7 +5,8 @@ import Requests from "../Requests/Requests";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-const ActiveInventory = ({ schoolName }) => {
+const ActiveInventory = () => {
+  const schoolName = localStorage.getItem("schoolName");
   const [inventoryData, setInventoryData] = useState(new Map());
 
   useEffect(() => {
