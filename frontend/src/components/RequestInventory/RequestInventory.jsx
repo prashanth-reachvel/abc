@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./RequestInventory.css";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 const RequestInventory = ({ addRequest }) => {
+  const school = localStorage.getItem("schoolName");
   const [otherOption, setOtherOption] = useState(false);
   const [schoolName, setSchoolName] = useState("");
   const [schoolId, setSchoolId] = useState("");
@@ -13,7 +14,43 @@ const RequestInventory = ({ addRequest }) => {
   const [description, setDescription] = useState("");
   const [quantity, setQuantity] = useState(0);
   const [selectedFiles, setSelectedFiles] = useState([]);
-  const [date, setDate] = useState();
+  const [date, setDate] = useState("");
+  const [titles, setTitles] = useState([]);
+
+  useEffect(() => {
+    setSchoolName(school);
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:3000/api/school/${encodeURIComponent(schoolName)}`
+        );
+        console.log(response.data.schoolId);
+        setSchoolId(response.data.schoolId);
+      } catch (error) {
+        console.error("Error Fetching Data:", error);
+      }
+    };
+    fetchData();
+  }, [schoolName]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:3000/api/inventory/${encodeURIComponent(
+            schoolName
+          )}`
+        );
+        const titles = response.data.map((item) => item.title);
+        setTitles(titles);
+      } catch (error) {
+        console.error("Error Fetching Titles:", error);
+      }
+    };
+    if (school) {
+      fetchData();
+    }
+  }, [schoolName]);
 
   const handleOtherOption = (e) => {
     if (e.target.value === "Others") {
@@ -71,45 +108,6 @@ const RequestInventory = ({ addRequest }) => {
     }
   };
 
-  // const handleSubmitRequest = async (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     const response = await axios.post("http://localhost:3000/api/request", {
-  //       schoolName,
-  //       schoolId,
-  //       inventory,
-  //       title,
-  //       description,
-  //       quantity,
-  //       date,
-  //       selectedFile,
-  //     });
-  //     console.log(response.data);
-  //     addRequest({
-  //       inventory,
-  //       quantity,
-  //       date,
-  //       status: "Pending",
-  //     });
-
-  //     // Clear all form fields after successful submission
-  //     setSchoolName("");
-  //     setSchoolId("");
-  //     setInventory("flavoured-milk"); // Reset to default value
-  //     setTitle("");
-  //     setDescription("");
-  //     setQuantity(0);
-  //     setDate("");
-  //     setSelectedFile(null);
-  //   } catch (error) {
-  //     console.error("Error submitting request:", error);
-  //   }
-  // };
-
-  // const handleFileChange = (e) => {
-  //   setSelectedFile(e.target.files[0]);
-  // };
-
   const handleFileChange = (e) => {
     const files = e.target.files;
     const updatedFiles = Array.from(files);
@@ -149,8 +147,8 @@ const RequestInventory = ({ addRequest }) => {
                   id="schoolName"
                   name="schoolName"
                   placeholder="Enter School Name"
-                  onChange={(e) => setSchoolName(e.target.value)}
-                  required
+                  value={school}
+                  readOnly
                 />
               </div>
             </div>
@@ -165,8 +163,8 @@ const RequestInventory = ({ addRequest }) => {
                   id="schoolId"
                   name="schoolId"
                   placeholder="Enter School ID"
-                  onChange={(e) => setSchoolId(e.target.value)}
-                  required
+                  value={schoolId}
+                  readOnly
                 />
               </div>
             </div>
@@ -187,9 +185,17 @@ const RequestInventory = ({ addRequest }) => {
                     name="dropdown"
                     className="form-control-request"
                     onChange={handleOtherOption}
-                    defaultValue="flavoured-milk"
+                    value={titles.length > 0 ? titles[0] : ""}
                   >
-                    <option value="flavoured-milk">Flavoured Milk</option>
+                    {titles
+                      .filter(
+                        (title, index, self) => self.indexOf(title) === index
+                      ) // Filter out duplicates
+                      .map((title) => (
+                        <option key={title} value={title}>
+                          {title}
+                        </option>
+                      ))}
                     <option value="Others">Others</option>
                   </select>
                 </div>
@@ -295,17 +301,6 @@ const RequestInventory = ({ addRequest }) => {
                 ))}
               </div>
             </div>
-
-            {/* <div className="form-group-request request-inventory-upload-docs">
-              <label htmlFor="fileUpload" className="col-form-label-request">
-                Upload Docs:
-              </label>
-              <input
-                type="file"
-                className="school-up-btn-request"
-                onChange={handleFileChange}
-              />
-            </div> */}
 
             <div className="request-inventory">
               <button type="submit" className="org-sub-btn-request">
