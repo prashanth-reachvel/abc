@@ -12,7 +12,7 @@ const Home = ({ schoolName }) => {
   return (
     <div className="home-main-container">
       <ActiveInventory schoolName={schoolName} />
-      <Requests />
+      <Requests schoolName={schoolName} />
     </div>
   );
 };
