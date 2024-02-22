@@ -5,7 +5,7 @@ import { Link, NavLink } from "react-router-dom";
 const Sidebar = ({ onLogout, schoolName, navigateTo }) => {
   const [isLoggedOut, setIsLoggedOut] = useState(false);
   const [isInventoryDropdown, setIsInventoryDropdown] = useState(false);
-  const [activeItem, setActiveItem] = useState(""); // State to track active item
+  const [activeItem, setActiveItem] = useState("Home"); // State to track active item
 
   const handleSignout = () => {
     setIsLoggedOut(true);
