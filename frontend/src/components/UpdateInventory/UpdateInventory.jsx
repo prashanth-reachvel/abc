@@ -137,7 +137,7 @@ const UpdateInventory = () => {
           </div>
         </form>
       </div>
-      <RecentUpdates />
+      <RecentUpdates school={school} title={title} />
     </div>
   );
 };
