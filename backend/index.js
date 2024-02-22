@@ -1,14 +1,15 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const multer = require("multer");
-const jwt = require('jsonwebtoken');
-const upload = multer({ dest: "uploads/" });
+// const multer = require("multer");
+// const upload = multer({ dest: "uploads/" });
+const jwt = require("jsonwebtoken");
 const SchoolModel = require("./models/School");
 const Inventory = require("./models/AddInventory");
 const RequestModel = require("./models/Request");
 const UpdateModel = require("./models/Update");
 const InventoryUpdate = require("./models/UpdateInventory");
+const upload = require("./middleware/upload");
 
 const app = express();
 app.use(express.json());
@@ -40,8 +41,17 @@ app.post("/login", (req, res) => {
   SchoolModel.findOne({ username: username }).then((user) => {
     if (user) {
       if (user.password === password) {
-        const token = jwt.sign({ username: user.username }, process.env.JWT_SECRET, { expiresIn: '1h' });
-        res.json({ message: "Success", schoolName: user.schoolName, token: token });
+        const token = jwt.sign(
+          { username: user.username },
+          process.env.JWT_SECRET,
+          { expiresIn: "1h" }
+        );
+        res.json({
+          message: "Success",
+          schoolName: user.schoolName,
+          token: token,
+        });
+        console.log(res.json());
       } else {
         res.json({ message: "The Password is incorrect" });
       }
@@ -75,9 +85,9 @@ app.post("/api/request", upload.single("fileInput"), async (req, res) => {
       title: req.body.title,
       description: req.body.description,
       quantity: req.body.quantity,
-      selectedFile: req.file ? req.file.filename : "",
+      selectedFile: req.file ? req.file.path : "",
       date: req.body.date,
-      status: "Pending",
+      status: "On Hold",
     };
 
     await RequestModel.create(newRequest);
@@ -105,10 +115,11 @@ app.post("/api/update/", async (req, res) => {
   }
 });
 
-app.get("/api/requests", async (req, res) => {
+app.get("/api/requests/:schoolName", async (req, res) => {
   try {
+    const { schoolName } = req.params;
     const requests = await RequestModel.find(
-      {},
+      { schoolName: schoolName },
       { inventory: 1, quantity: 1, date: 1, status: 1 },
       { limit: 5, sort: { date: -1 } } // Limit to latest 5 and sort by date descending
     );
@@ -119,10 +130,10 @@ app.get("/api/requests", async (req, res) => {
   }
 });
 
-app.get("/api/updates/:school", async (req, res) => {
+app.get("/api/updates/:school/:title", async (req, res) => {
   try {
-    const { school } = req.params;
-    const updates = await UpdateModel.find({ school: school })
+    const { school, title } = req.params;
+    const updates = await UpdateModel.find({ school: school, title: title })
       .limit(5)
       .sort({ updatedDate: -1 })
       .select("school title newTotalQuantity updatedDate reason source");
@@ -210,6 +221,25 @@ app.post("/api/inventory/:school/:title", async (req, res) => {
   } catch (error) {
     console.error("Error creating inventory:", error);
     res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+// Route to get schoolId based on schoolName
+app.get("/api/school/:schoolName", async (req, res) => {
+  const { schoolName } = req.params; // Use req.params to get the schoolName parameter
+
+  try {
+    // Find the school document based on the schoolName
+    const school = await SchoolModel.findOne({ schoolName });
+
+    if (!school) {
+      return res.status(404).json({ message: "School not found" });
+    }
+
+    res.json({ schoolId: school.schoolId }); // Return the schoolId
+  } catch (err) {
+    console.error("Error finding school:", err);
+    res.status(500).json({ message: "Internal server error" });
   }
 });
 
