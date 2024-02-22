@@ -23,6 +23,7 @@ const Signin = ({ onLogin }) => {
             onLogin(schoolName); // Pass username and schoolName to onLogin function
             console.log(schoolName);
             navigate("/home", { state: { schoolName } });
+            localStorage.setItem("schoolName", schoolName);
           } else {
             setError(result.data.message);
           }
