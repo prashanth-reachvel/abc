@@ -56,7 +56,6 @@ const RequestInventory = ({ addRequest }) => {
     setInventory(e.target.value);
     if (e.target.value === "Others") {
       setOtherOption(true);
-      setInventory("Others");
     } else {
       setOtherOption(false);
     }
