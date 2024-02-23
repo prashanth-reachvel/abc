@@ -53,12 +53,12 @@ const RequestInventory = ({ addRequest }) => {
   }, [schoolName]);
 
   const handleOtherOption = (e) => {
+    setInventory(e.target.value);
     if (e.target.value === "Others") {
       setOtherOption(true);
       setInventory("Others");
     } else {
       setOtherOption(false);
-      setInventory(e.target.value);
     }
   };
 
