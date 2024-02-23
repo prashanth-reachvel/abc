@@ -14,7 +14,7 @@ const RecentUpdates = ({ school, title }) => {
     const fetchUpdates = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/api/updates/${encodeURIComponent(
+          `https://schoolapi.sevabharath.com/api/updates/${encodeURIComponent(
             school
           )}/${encodeURIComponent(title)}?limit=5`
         );
