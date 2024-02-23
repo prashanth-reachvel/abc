@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import "./Requests.css";
 import axios from "axios";
 
-const Requests = ({ schoolName }) => {
+const Requests = () => {
   const [requests, setRequests] = useState([]);
   const [selectedDate, setSelectedDate] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
+  const schoolName = localStorage.getItem("schoolName");
 
   useEffect(() => {
     const fetchData = async () => {
