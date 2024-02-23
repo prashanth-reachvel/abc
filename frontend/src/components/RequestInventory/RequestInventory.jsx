@@ -9,7 +9,7 @@ const RequestInventory = ({ addRequest }) => {
   const [otherOption, setOtherOption] = useState(false);
   const [schoolName, setSchoolName] = useState("");
   const [schoolId, setSchoolId] = useState("");
-  const [inventory, setInventory] = useState("flavoured-milk");
+  const [inventory, setInventory] = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [quantity, setQuantity] = useState(0);
