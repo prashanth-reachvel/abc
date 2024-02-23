@@ -52,12 +52,20 @@ const RequestInventory = ({ addRequest }) => {
     }
   }, [schoolName]);
 
+   useEffect(() => {
+    setInventory(titles.length > 0 ? titles[0] : "");
+  }, []);
+
+  // console.log(inventory);
+
   const handleOtherOption = (e) => {
     setInventory(e.target.value);
     if (e.target.value === "Others") {
       setOtherOption(true);
+      setInventory("Others");
     } else {
       setOtherOption(false);
+      setInventory(e.target.value);
     }
   };
 
@@ -184,7 +192,7 @@ const RequestInventory = ({ addRequest }) => {
                     name="dropdown"
                     className="form-control-request"
                     onChange={handleOtherOption}
-                    value={titles.length > 0 ? titles[0] : ""}
+                    value={inventory}
                   >
                     {titles
                       .filter(
