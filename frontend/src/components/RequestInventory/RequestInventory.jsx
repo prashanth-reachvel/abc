@@ -22,7 +22,7 @@ const RequestInventory = ({ addRequest }) => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/api/school/${encodeURIComponent(schoolName)}`
+          `https://schoolapi.sevabharath.com/api/school/${encodeURIComponent(schoolName)}`
         );
         console.log(response.data.schoolId);
         setSchoolId(response.data.schoolId);
@@ -37,7 +37,7 @@ const RequestInventory = ({ addRequest }) => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/api/inventory/${encodeURIComponent(
+          `https://schoolapi.sevabharath.com/api/inventory/${encodeURIComponent(
             schoolName
           )}`
         );
@@ -78,7 +78,7 @@ const RequestInventory = ({ addRequest }) => {
       });
 
       const response = await axios.post(
-        "http://localhost:3000/api/request",
+        "https://schoolapi.sevabharath.com/api/request",
         formData,
         {
           headers: {
