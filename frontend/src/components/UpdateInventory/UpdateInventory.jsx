@@ -13,6 +13,8 @@ const UpdateInventory = () => {
   const [newTotalQuantity, setNewTotalQuantity] = useState(0);
   const [updatedBy, setUpdatedBy] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [newAvailable, setNewAvilable] = useState(0);
+  const [newDistributed, setNewDistributed] = useState(0);
   const source = school;
 
   useEffect(() => {
@@ -22,7 +24,11 @@ const UpdateInventory = () => {
         const response = await axios.get(
           `https://schoolapi.sevabharath.com/api/inventory/${school}/${encodedTitle}`
         );
-        const { updatedDate, totalAddQuantity } = response.data;
+        console.log(response.data);
+        const { updatedDate, totalAddQuantity, available, distributed } =
+          response.data;
+        setNewAvilable(available);
+        setNewDistributed(distributed);
         setUpdatedDate(updatedDate);
         setTotalAddQuantity(parseInt(totalAddQuantity));
       } catch (error) {
@@ -33,34 +39,34 @@ const UpdateInventory = () => {
   }, [school, title]);
 
   const handleNewTotalQuantityChange = (value) => {
-    if (parseInt(value) > totalAddQuantity) {
+    if (parseInt(value) > newAvailable) {
       setErrorMessage("Please enter less than or equal to the Available Qty");
     } else {
       setErrorMessage("");
     }
-    setNewTotalQuantity(value);
+    setNewTotalQuantity(value.trim());
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (parseInt(newTotalQuantity) > totalAddQuantity) {
+    if (parseInt(newTotalQuantity) > newAvailable) {
       setErrorMessage("Please enter less than or equal to the Available Qty");
       return;
     }
 
     try {
-      const newTotal = totalAddQuantity - parseInt(newTotalQuantity);
+      const newTotal = newAvailable - parseInt(newTotalQuantity);
       await axios.post(
         `https://schoolapi.sevabharath.com/api/updateinventory/${school}/${title}`,
         {
           school,
-          title,
+          title: title.trim(),
           updatedDate,
           newTotalQuantity,
-          totalAddQuantity: newTotal,
+          totalAddQuantity,
           available: newTotal,
-          distributed: newTotalQuantity,
+          distributed: parseInt(newDistributed) + parseInt(newTotalQuantity),
           reason,
           source,
           updatedBy,
@@ -70,15 +76,18 @@ const UpdateInventory = () => {
       await axios.post(
         `https://schoolapi.sevabharath.com/api/inventory/${school}/${title}`,
         {
-          totalAddQuantity: newTotal,
+          totalAddQuantity,
           available: newTotal,
-          distributed: newTotalQuantity,
+          distributed: parseInt(newDistributed) + parseInt(newTotalQuantity),
         }
       );
       console.log("Data Updated Successfully");
       setUpdatedDate("");
       setTotalAddQuantity(totalAddQuantity); // Update totalAddQuantity with the new total
+      setNewAvilable(newTotal);
+      setNewDistributed(parseInt(newDistributed) + parseInt(newTotalQuantity));
       window.location.reload(); // Reload the page
+      alert("Request Updated Successfully");
     } catch (error) {
       console.error("Error updating inventory data:", error);
     }
@@ -115,7 +124,7 @@ const UpdateInventory = () => {
               <input
                 type="number"
                 className="quantity"
-                placeholder={`Available Qty: ${totalAddQuantity}`}
+                placeholder={`Available Qty: ${newAvailable}`}
                 // value={newTotalQuantity}
                 onChange={(e) => handleNewTotalQuantityChange(e.target.value)}
               />
