@@ -11,7 +11,7 @@ const ActiveInventory = () => {
   const fetchInventoryData = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/api/inventory/${encodeURIComponent(schoolName)}`
+        `https://schoolapi.sevabharath.com/api/inventory/${encodeURIComponent(schoolName)}`
       );
       console.log(response.data);
       setInventoryData(response.data);
