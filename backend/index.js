@@ -61,13 +61,24 @@ app.post("/login", (req, res) => {
   });
 });
 
-// Endpoint to get inventory data by schoolName
+// Endpoint to get latest inventory data by schoolName with unique titles
 app.get("/api/inventory/:schoolName", async (req, res) => {
   try {
     const { schoolName } = req.params;
-    const inventory = await Inventory.find({ school: schoolName }).sort({
-      updatedDate: -1,
+    const uniqueTitles = await Inventory.distinct("title", {
+      school: schoolName,
     });
+    const inventory = await Promise.all(
+      uniqueTitles.map(async (title) => {
+        const latestItem = await Inventory.findOne({
+          school: schoolName,
+          title,
+        })
+          .sort({ updatedDate: -1 })
+          .limit(1);
+        return latestItem;
+      })
+    );
     res.json(inventory);
   } catch (error) {
     console.error("Error fetching inventory:", error);
