@@ -8,7 +8,7 @@ const Requests = () => {
   const [selectedDate, setSelectedDate] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
 
-  // console.log(schoolName);
+  console.log(schoolName);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -18,6 +18,7 @@ const Requests = () => {
             schoolName
           )}?limit=5`
         );
+        console.log(response.data);
         setRequests(response.data);
       } catch (error) {
         console.error("Error fetching requests:", error);
@@ -39,7 +40,11 @@ const Requests = () => {
       (!selectedDate || request.date === selectedDate) &&
       (!searchQuery ||
         (request.inventory &&
-          request.inventory.toLowerCase().includes(searchQuery.toLowerCase())))
+          request.inventory
+            .toLowerCase()
+            .includes(searchQuery.toLowerCase())) ||
+        (request.quantity &&
+          request.quantity.toString().includes(searchQuery.toLowerCase())))
     );
   });
 
