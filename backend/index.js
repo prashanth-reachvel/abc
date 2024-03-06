@@ -100,7 +100,6 @@ app.post("/api/request", upload.single("fileInput"), async (req, res) => {
       date: req.body.date,
       status: "On Hold",
     };
-
     await RequestModel.create(newRequest);
 
     res.status(201).json({ message: "Request submitted successfully" });
