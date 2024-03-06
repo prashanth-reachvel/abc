@@ -114,8 +114,10 @@ const RequestInventory = ({ addRequest }) => {
       setQuantity(0);
       setDate("");
       setSelectedFiles([]);
-      window.location.reload(); // Reload the page
       alert("Request Submitted Successfully");
+      window.setTimeout(() => {
+        window.location.href = window.location.href; // Redirect to the same page
+      }, 1000); // Delay the reload by 1 second (1000 milliseconds)
     } catch (error) {
       console.error("Error submitting request:", error);
     }
