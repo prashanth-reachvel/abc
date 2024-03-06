@@ -24,9 +24,9 @@ const UpdateInventory = () => {
         const response = await axios.get(
           `https://schoolapi.sevabharath.com/api/inventory/${school}/${encodedTitle}`
         );
-        console.log(response.data);
+        // console.log(response.data[0]);
         const { updatedDate, totalAddQuantity, available, distributed } =
-          response.data;
+          response.data[0];
         setNewAvilable(available);
         setNewDistributed(distributed);
         setUpdatedDate(updatedDate);
@@ -37,6 +37,8 @@ const UpdateInventory = () => {
     };
     fetchData();
   }, [school, title]);
+
+  // console.log(newAvailable);
 
   const handleNewTotalQuantityChange = (value) => {
     if (parseInt(value) > newAvailable) {
