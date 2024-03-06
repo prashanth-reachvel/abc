@@ -11,7 +11,7 @@ const ActiveInventory = () => {
   const fetchInventoryData = async () => {
     try {
       const response = await axios.get(
-        `https://schoolapi.sevabharath.com/api/inventory/${encodeURIComponent(schoolName)}`
+        `http://localhost:3000/api/inventory/${encodeURIComponent(schoolName)}`
       );
       console.log(response.data);
       setInventoryData(response.data);
@@ -61,8 +61,8 @@ const ActiveInventory = () => {
             }
 
             const item = items[0]; // Selecting the latest item
-            console.log(items);
-            console.log(item);
+            // console.log(items);
+            // console.log(item);
             return (
               <div className="member-green-card" key={index}>
                 <p className="menber-plan-head">{item.title}</p>
