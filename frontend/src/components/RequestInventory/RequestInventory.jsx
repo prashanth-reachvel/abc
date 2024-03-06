@@ -16,6 +16,7 @@ const RequestInventory = ({ addRequest }) => {
   const [selectedFiles, setSelectedFiles] = useState([]);
   const [date, setDate] = useState("");
   const [titles, setTitles] = useState([]);
+  const [initialTitle, setInitialTitle] = useState([]);
 
   useEffect(() => {
     setSchoolName(school);
@@ -43,6 +44,7 @@ const RequestInventory = ({ addRequest }) => {
         );
         const titles = response.data.map((item) => item.title);
         setTitles(titles);
+        setInitialTitle(titles[0]);
       } catch (error) {
         console.error("Error Fetching Titles:", error);
       }
@@ -52,9 +54,11 @@ const RequestInventory = ({ addRequest }) => {
     }
   }, [schoolName]);
 
-   useEffect(() => {
-    setInventory(titles.length > 0 ? titles[0] : "");
-  }, []);
+  useEffect(() => {
+    setInventory(titles.length > 0 ? titles[0] : initialTitle);
+  }, [titles, initialTitle]);
+
+  console.log(initialTitle);
 
   // console.log(inventory);
 
@@ -110,6 +114,8 @@ const RequestInventory = ({ addRequest }) => {
       setQuantity(0);
       setDate("");
       setSelectedFiles([]);
+      window.location.reload(); // Reload the page
+      alert("Request Submitted Successfully");
     } catch (error) {
       console.error("Error submitting request:", error);
     }
