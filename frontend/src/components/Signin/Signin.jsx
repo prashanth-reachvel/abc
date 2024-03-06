@@ -10,7 +10,7 @@ const Signin = ({ onLogin }) => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  console.log(username);
+  // console.log(username);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
