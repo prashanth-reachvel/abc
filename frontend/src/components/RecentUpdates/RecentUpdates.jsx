@@ -7,8 +7,8 @@ const RecentUpdates = ({ school, title }) => {
   const [selectedDate, setSelectedDate] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
 
-  console.log(school);
-  console.log(title);
+  // console.log(school);
+  // console.log(title);
 
   useEffect(() => {
     const fetchUpdates = async () => {
@@ -36,12 +36,16 @@ const RecentUpdates = ({ school, title }) => {
     setSearchQuery(value);
   };
 
+  // console.log(updates);
+
   const filteredUpdates = updates.filter((update) => {
+    const updateDate = new Date(update.updatedDate);
     return (
-      (!selectedDate || update.date === selectedDate) &&
+      (!selectedDate ||
+        updateDate.toISOString().split("T")[0] === selectedDate) &&
       (!searchQuery ||
-        (update.inventory &&
-          update.inventory.toLowerCase().includes(searchQuery.toLowerCase())))
+        (update.title &&
+          update.title.toLowerCase().includes(searchQuery.toLowerCase())))
     );
   });
 
