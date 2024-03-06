@@ -41,6 +41,8 @@ const UpdateInventory = () => {
   const handleNewTotalQuantityChange = (value) => {
     if (parseInt(value) > newAvailable) {
       setErrorMessage("Please enter less than or equal to the Available Qty");
+    } else if (parseInt(value) < 0) {
+      setErrorMessage("Please enter the value greater the zero");
     } else {
       setErrorMessage("");
     }
@@ -107,6 +109,7 @@ const UpdateInventory = () => {
                 type="date"
                 className="date-input"
                 onChange={(e) => setUpdatedDate(e.target.value)}
+                required
               />
             </div>
             <div className="reason-container">
@@ -115,6 +118,7 @@ const UpdateInventory = () => {
                 type="text"
                 className="reason input"
                 onChange={(e) => setReason(e.target.value)}
+                required
               />
             </div>
           </div>
@@ -127,6 +131,7 @@ const UpdateInventory = () => {
                 placeholder={`Available Qty: ${newAvailable}`}
                 // value={newTotalQuantity}
                 onChange={(e) => handleNewTotalQuantityChange(e.target.value)}
+                required
               />
               {errorMessage && <p className="error-message">{errorMessage}</p>}
             </div>
@@ -136,6 +141,7 @@ const UpdateInventory = () => {
                 type="text"
                 className="updated-by inp"
                 onChange={(e) => setUpdatedBy(e.target.value)}
+                required
               />
             </div>
           </div>
