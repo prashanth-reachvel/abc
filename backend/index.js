@@ -9,7 +9,7 @@ const Inventory = require("./models/AddInventory");
 const RequestModel = require("./models/Request");
 const UpdateModel = require("./models/Update");
 const InventoryUpdate = require("./models/UpdateInventory");
-const upload = require("./middleware/upload");
+// const upload = require("./middleware/upload");
 
 const app = express();
 app.use(express.json());
