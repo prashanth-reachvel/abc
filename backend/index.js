@@ -62,24 +62,52 @@ app.post("/login", (req, res) => {
 });
 
 // Endpoint to get latest inventory data by schoolName with unique titles
+// app.get("/api/inventory/:schoolName", async (req, res) => {
+//   try {
+//     const { schoolName } = req.params;
+//     const uniqueTitles = await Inventory.distinct("title", {
+//       school: schoolName,
+//     });
+//     const inventory = await Promise.all(
+//       uniqueTitles.map(async (title) => {
+//         const latestItem = await Inventory.findOne({
+//           school: schoolName,
+//           title,
+//         })
+//           .sort({ updatedDate: -1 })
+//           .limit(1);
+//         return latestItem;
+//       })
+//     );
+//     res.json(inventory);
+//   } catch (error) {
+//     console.error("Error fetching inventory:", error);
+//     res.status(500).json({ error: "Internal server error" });
+//   }
+// });
+
+// Endpoint to get inventory data by schoolName
 app.get("/api/inventory/:schoolName", async (req, res) => {
   try {
     const { schoolName } = req.params;
-    const uniqueTitles = await Inventory.distinct("title", {
-      school: schoolName,
+    const inventory = await Inventory.find({ school: schoolName });
+
+    // Get unique titles from the inventory
+    const uniqueTitles = [...new Set(inventory.map((item) => item.title))];
+
+    // Get the latest data for each unique title
+    const latestInventoryData = uniqueTitles.map((title) => {
+      const itemsWithTitle = inventory.filter((item) => item.title === title);
+      const latestItem = itemsWithTitle.reduce((prev, current) => {
+        const dateA = new Date(prev.updatedDate || prev.createdDate);
+        const dateB = new Date(current.updatedDate || current.createdDate);
+        return dateA > dateB ? prev : current;
+      });
+      return latestItem;
     });
-    const inventory = await Promise.all(
-      uniqueTitles.map(async (title) => {
-        const latestItem = await Inventory.findOne({
-          school: schoolName,
-          title,
-        })
-          .sort({ updatedDate: -1 })
-          .limit(1);
-        return latestItem;
-      })
-    );
-    res.json(inventory);
+
+    // console.log(latestInventoryData);
+    res.json(latestInventoryData);
   } catch (error) {
     console.error("Error fetching inventory:", error);
     res.status(500).json({ error: "Internal server error" });
@@ -155,19 +183,47 @@ app.get("/api/updates/:school/:title", async (req, res) => {
 });
 
 // Endpoint to get inventory data by schoolName and title
+// app.get("/api/inventory/:school/:title", async (req, res) => {
+//   try {
+//     const { school, title } = req.params;
+//     const inventory = await Inventory.findOne({
+//       school: school,
+//       title: title,
+//     }).sort({
+//       updatedDate: -1,
+//     });
+//     if (!inventory) {
+//       return res.status(404).json({ error: "Inventory not found" });
+//     }
+//     res.json(inventory);
+//   } catch (error) {
+//     console.error("Error fetching inventory:", error);
+//     res.status(500).json({ error: "Internal server error" });
+//   }
+// });
+
+// Endpoint to get inventory data by schoolName
 app.get("/api/inventory/:school/:title", async (req, res) => {
   try {
     const { school, title } = req.params;
-    const inventory = await Inventory.findOne({
-      school: school,
-      title: title,
-    }).sort({
-      updatedDate: -1,
+    const inventory = await Inventory.find({ school: school, title: title });
+
+    // Get unique titles from the inventory
+    const uniqueTitles = [...new Set(inventory.map((item) => item.title))];
+
+    // Get the latest data for each unique title
+    const latestInventoryData = uniqueTitles.map((title) => {
+      const itemsWithTitle = inventory.filter((item) => item.title === title);
+      const latestItem = itemsWithTitle.reduce((prev, current) => {
+        const dateA = new Date(prev.updatedDate || prev.createdDate);
+        const dateB = new Date(current.updatedDate || current.createdDate);
+        return dateA > dateB ? prev : current;
+      });
+      return latestItem;
     });
-    if (!inventory) {
-      return res.status(404).json({ error: "Inventory not found" });
-    }
-    res.json(inventory);
+
+    console.log(latestInventoryData);
+    res.json(latestInventoryData);
   } catch (error) {
     console.error("Error fetching inventory:", error);
     res.status(500).json({ error: "Internal server error" });
