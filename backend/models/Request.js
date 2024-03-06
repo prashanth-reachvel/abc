@@ -9,7 +9,7 @@ const RequestSchema = new mongoose.Schema({
   description: String,
   quantity: Number,
   selectedFile: String,
-  date: String,
+  date: Date,
   status: String,
 });
 
