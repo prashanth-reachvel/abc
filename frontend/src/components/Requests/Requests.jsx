@@ -3,10 +3,12 @@ import "./Requests.css";
 import axios from "axios";
 
 const Requests = () => {
+  const schoolName = localStorage.getItem("schoolName");
   const [requests, setRequests] = useState([]);
   const [selectedDate, setSelectedDate] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
-  const schoolName = localStorage.getItem("schoolName");
+
+  // console.log(schoolName);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -89,7 +91,7 @@ const Requests = () => {
               <td className="td-text-style">{index + 1}</td>
               <td>{request.inventory}</td>
               <td>{request.quantity}</td>
-              <td>{request.date}</td>
+              <td>{new Date(request.date).toLocaleDateString()}</td>
               <td>{request.status}</td>
             </tr>
           ))}
